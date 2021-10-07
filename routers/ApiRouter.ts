@@ -15,7 +15,7 @@ export default class ApiRouter{
     }
 
     initRoutes() {
-        this.router.get('/changedtokens', this.getChangedTokens );
+        this.router.get('/getaddress', this.getMostSupplyAddress );
     }
 
     getMaxAndMinKey = ( obj: any ): any => {
@@ -66,7 +66,7 @@ export default class ApiRouter{
         return txObject;
     };
 
-    getChangedTokens = async ( req: Request, res: Response ) => {
+    getMostSupplyAddress = async ( req: Request, res: Response ) => {
         let transactionsArray = await this.getTransactionsByPeriod( 100 ); // Поменять на 100.
         let addresses = await this.findChangesInTxs( transactionsArray );
         let max = this.getMaxAndMinKey( addresses );
